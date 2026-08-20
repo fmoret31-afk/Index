@@ -218,6 +218,140 @@
             border-radius: 30px;
             font-size: 1.1rem;
         }
+
+        /* --- ESTILOS DEL DASHBOARD --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 25px 0 30px 0;
+        }
+        .dash-card {
+            background: #faf6f1;
+            border-radius: 12px;
+            padding: 20px 18px;
+            border: 1px solid #e3d6c8;
+            transition: transform 0.2s;
+        }
+        .dash-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+        .dash-card h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #5a4531;
+            border-bottom: 1px solid #e3d6c8;
+            padding-bottom: 6px;
+        }
+        .dash-number {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #3d2c1b;
+            line-height: 1.2;
+        }
+        .dash-number small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6a5f52;
+        }
+        .dash-status {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+        .status-green { background: #d4edda; color: #155724; }
+        .status-amber { background: #fff3cd; color: #856404; }
+        .status-red { background: #f8d7da; color: #721c24; }
+
+        .progress-bar-bg {
+            background: #e3d6c8;
+            border-radius: 30px;
+            height: 12px;
+            margin: 12px 0 6px 0;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 30px;
+            background: #b48a5c;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #5a4531;
+        }
+        .risk-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 0.95rem;
+        }
+        .risk-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .risk-dot.red { background: #b33c2e; }
+        .risk-dot.green { background: #3f7e5c; }
+        .risk-dot.orange { background: #d48c3c; }
+
+        .escenario-prediction {
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .category-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .cat-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .cat-row .cat-name {
+            width: 90px;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+        .cat-row .cat-bar {
+            flex: 1;
+            height: 8px;
+            background: #e3d6c8;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .cat-row .cat-fill {
+            height: 100%;
+            border-radius: 20px;
+            background: #b48a5c;
+            transition: width 0.4s;
+            width: 0%;
+        }
+        .cat-row .cat-pct {
+            width: 40px;
+            text-align: right;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
         .footer-note {
             margin-top: 40px;
             padding-top: 20px;
@@ -233,6 +367,7 @@
             table { font-size: 0.85rem; }
             th, td { padding: 8px 6px; }
             .checklist-item { flex-wrap: wrap; }
+            .dashboard-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -408,25 +543,25 @@
     <h2>📋 Checklist de Implementación (Lista de Verificación)</h2>
     <p>Utiliza esta lista para monitorear el avance de cada tarea crítica. Marca cada ítem a medida que lo completes.</p>
 
-    <div class="checklist-section">
+    <div class="checklist-section" id="checklist-impl">
 
         <!-- Categoría 1: Legal y Permisos -->
         <div class="checklist-category">
             <h4>✅ Categoría 1: Legal y Permisos (Fundacional)</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="chk1">
+                <input type="checkbox" id="chk1" data-cat="legal">
                 <label for="chk1"><strong>Licencia de Funcionamiento</strong> <span class="task-detail">Tramitar ante la municipalidad distrital. Reunir todos los requisitos (RUC, croquis, etc.).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk2">
+                <input type="checkbox" id="chk2" data-cat="legal">
                 <label for="chk2"><strong>Inspección Técnica de Seguridad (ITSE)</strong> <span class="task-detail">Gestionar la inspección y obtener el certificado que acredite las condiciones de seguridad.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk3">
+                <input type="checkbox" id="chk3" data-cat="legal">
                 <label for="chk3"><strong>Seguro de Responsabilidad Civil</strong> <span class="task-detail">Contratar una póliza que cubra daños a terceros dentro de las instalaciones.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk4">
+                <input type="checkbox" id="chk4" data-cat="legal">
                 <label for="chk4"><strong>Verificación de Zonificación</strong> <span class="task-detail">Confirmar con la municipalidad que el uso de "eventos y recreación" está permitido en el terreno.</span></label>
             </div>
         </div>
@@ -435,27 +570,27 @@
         <div class="checklist-category">
             <h4>🔧 Categoría 2: Infraestructura Física (Habilitación)</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="chk5">
+                <input type="checkbox" id="chk5" data-cat="infra">
                 <label for="chk5"><strong>Tanque de almacenamiento de agua</strong> <span class="task-detail">Instalar un tanque con capacidad para al menos 24 horas de operación (mitiga cortes nocturnos).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk6">
+                <input type="checkbox" id="chk6" data-cat="infra">
                 <label for="chk6"><strong>Adecuación de SS.HH. (Norma A.070)</strong> <span class="task-detail">Verificar y ampliar los servicios higiénicos según el aforo máximo proyectado.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk7">
+                <input type="checkbox" id="chk7" data-cat="infra">
                 <label for="chk7"><strong>Reparación de infraestructura visible</strong> <span class="task-detail">Reemplazar paredes de triplay deterioradas, pintar áreas principales, reparar accesos.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk8">
+                <input type="checkbox" id="chk8" data-cat="infra">
                 <label for="chk8"><strong>Recuperación de áreas verdes y césped</strong> <span class="task-detail">Sembrar grass de crecimiento rápido, podar jardines, instalar riego básico.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk9">
+                <input type="checkbox" id="chk9" data-cat="infra">
                 <label for="chk9"><strong>Mejora del acceso (tramo de tierra)</strong> <span class="task-detail">Compactar, colocar grava y señalizar el ingreso para mejorar la primera impresión.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk10">
+                <input type="checkbox" id="chk10" data-cat="infra">
                 <label for="chk10"><strong>Señalización de seguridad</strong> <span class="task-detail">Colocar señales de "Piso mojado", rutas de evacuación, extintores y zonas de seguridad.</span></label>
             </div>
         </div>
@@ -464,27 +599,27 @@
         <div class="checklist-category">
             <h4>⚙️ Categoría 3: Operación y Procesos (Estandarización)</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="chk11">
+                <input type="checkbox" id="chk11" data-cat="operacion">
                 <label for="chk11"><strong>Sistema de reservas digital</strong> <span class="task-detail">Implementar un software o herramienta (ej. calendario compartido) para evitar dobles reservas.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk12">
+                <input type="checkbox" id="chk12" data-cat="operacion">
                 <label for="chk12"><strong>Checklist de preparación del establecimiento</strong> <span class="task-detail">Documentar y usar un checklist antes de cada evento (limpieza, servicios, áreas verdes).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk13">
+                <input type="checkbox" id="chk13" data-cat="operacion">
                 <label for="chk13"><strong>Checklist de limpieza post-evento</strong> <span class="task-detail">Documentar y usar un checklist después de cada evento (residuos, baños, cierre).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk14">
+                <input type="checkbox" id="chk14" data-cat="operacion">
                 <label for="chk14"><strong>Protocolo de control de ruido</strong> <span class="task-detail">Adquirir un decibelímetro, establecer límites (70 dB día / 60 dB noche) y registrar mediciones.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk15">
+                <input type="checkbox" id="chk15" data-cat="operacion">
                 <label for="chk15"><strong>Plan de mantenimiento preventivo</strong> <span class="task-detail">Elaborar un cronograma mensual de inspecciones eléctricas, hidráulicas y de jardinería.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk16">
+                <input type="checkbox" id="chk16" data-cat="operacion">
                 <label for="chk16"><strong>Gestión de residuos (contrato con EO-RS)</strong> <span class="task-detail">Contratar una empresa autorizada para la recogida de residuos y establecer segregación en origen.</span></label>
             </div>
         </div>
@@ -493,23 +628,23 @@
         <div class="checklist-category">
             <h4>📢 Categoría 4: Marketing y Comunicación (Llegar al público)</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="chk17">
+                <input type="checkbox" id="chk17" data-cat="marketing">
                 <label for="chk17"><strong>Crear perfiles en redes sociales (Instagram, Facebook)</strong> <span class="task-detail">Subir contenido que destaque tranquilidad, seguridad y naturaleza. Mostrar el proceso de mejora.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk18">
+                <input type="checkbox" id="chk18" data-cat="marketing">
                 <label for="chk18"><strong>Diseñar la oferta de lanzamiento</strong> <span class="task-detail">Definir la "Membresía Inaugural Búho" (50% descuento) y la promoción "Refugio Seguro".</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk19">
+                <input type="checkbox" id="chk19" data-cat="marketing">
                 <label for="chk19"><strong>Alianza formal con el hospital</strong> <span class="task-detail">Reunirse con el departamento de Bienestar, ofrecer espacio gratuito para eventos internos a cambio de recomendación y visibilidad.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk20">
+                <input type="checkbox" id="chk20" data-cat="marketing">
                 <label for="chk20"><strong>Realizar eventos "Beta" y recopilar testimonios</strong> <span class="task-detail">Invitar a familias conocidas o micro-influencers para generar contenido visual y reseñas reales.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk21">
+                <input type="checkbox" id="chk21" data-cat="marketing">
                 <label for="chk21"><strong>Campaña "El Refugio, recomendado por el hospital"</strong> <span class="task-detail">Una vez obtenido el permiso del hospital, lanzar esta campaña en redes y web.</span></label>
             </div>
         </div>
@@ -518,15 +653,15 @@
         <div class="checklist-category">
             <h4>👥 Categoría 5: Recursos Humanos (Equipo)</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="chk22">
+                <input type="checkbox" id="chk22" data-cat="rrhh">
                 <label for="chk22"><strong>Contratación de personal clave</strong> <span class="task-detail">Definir y contratar: Administración, personal operativo, limpieza y mantenimiento.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk23">
+                <input type="checkbox" id="chk23" data-cat="rrhh">
                 <label for="chk23"><strong>Capacitación en procedimientos y SST</strong> <span class="task-detail">Capacitar a todo el personal en los checklists, control de ruido, atención al cliente y primeros auxilios.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="chk24">
+                <input type="checkbox" id="chk24" data-cat="rrhh">
                 <label for="chk24"><strong>Definición de horarios y roles</strong> <span class="task-detail">Establecer turnos, responsabilidades claras y canales de comunicación interna.</span></label>
             </div>
         </div>
@@ -534,29 +669,29 @@
         <!-- Resumen del checklist -->
         <div class="checklist-summary">
             <span>📌 Total de tareas: <strong>24</strong></span>
-            <span>✅ Completadas: <span id="contador" class="count">0</span></span>
+            <span>✅ Completadas: <span id="contadorImpl" class="count">0</span></span>
             <span style="font-size:0.9rem; opacity:0.9;">(Marca las casillas para actualizar el contador)</span>
         </div>
     </div>
 
-    <!-- ==================== 7.6 CHECKLIST DE CUMPLIMIENTO NORMATIVO (RNE A.070) NUEVO ==================== -->
+    <!-- ==================== 7.6 CHECKLIST DE CUMPLIMIENTO NORMATIVO (RNE A.070) ==================== -->
     <h2>📜 Checklist de Cumplimiento Normativo (RNE A.070 - Comercio)</h2>
     <p>Basado en el Reglamento Nacional de Edificaciones, aplicable específicamente a <strong>"Locales para eventos y salones de baile"</strong> (Art. 2, inciso e). Este checklist es <strong>obligatorio</strong> para la obtención de la Licencia de Funcionamiento y el ITSE.</p>
 
-    <div class="checklist-section">
+    <div class="checklist-section" id="checklist-norm">
 
         <div class="checklist-category">
             <h4>📏 Categoría 1: Aforo y Dimensiones Generales</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="norm1">
+                <input type="checkbox" id="norm1" data-cat-norm="dimension">
                 <label for="norm1"><strong>Clasificación correcta del uso</strong> <span class="norm-reference">Art. 2-e</span><span class="task-detail">Verificar que la municipalidad clasifique el predio como "Local para eventos y salones de baile".</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm2">
+                <input type="checkbox" id="norm2" data-cat-norm="dimension">
                 <label for="norm2"><strong>Cálculo del Aforo Máximo</strong> <span class="norm-reference">Art. 8</span><span class="task-detail">Según la norma, para eventos se considera <strong>1 persona por m²</strong> de área de venta (área útil del evento). <br> <strong>Ejemplo:</strong> Si el área de evento es 500 m², el aforo máximo es 500 personas. <br> ⚠️ <strong>CRÍTICO:</strong> Este cálculo debe ser validado y aprobado por la municipalidad.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm3">
+                <input type="checkbox" id="norm3" data-cat-norm="dimension">
                 <label for="norm3"><strong>Altura libre mínima</strong> <span class="norm-reference">Art. 9</span><span class="task-detail">La altura mínima de piso terminado a cielo raso en áreas techadas debe ser de <strong>3.00 metros</strong>.</span></label>
             </div>
         </div>
@@ -564,23 +699,23 @@
         <div class="checklist-category">
             <h4>🚻 Categoría 2: Servicios Higiénicos (SS.HH.)</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="norm4">
+                <input type="checkbox" id="norm4" data-cat-norm="sani">
                 <label for="norm4"><strong>SS.HH. para Empleados</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Calcular según el número de empleados (considerando 10 m² por empleado). <br> <strong>Ejemplo:</strong> Si tienes 5 empleados (50 m²), aplica la tabla: Hombres (1L, 1u, 1I) y Mujeres (1L, 1I).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm5">
+                <input type="checkbox" id="norm5" data-cat-norm="sani">
                 <label for="norm5"><strong>SS.HH. para Público (Rango 17-50 personas)</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Si el aforo es de 17 a 50 personas: Hombres (1L, 1u, 1I) y Mujeres (1L, 1I).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm6">
+                <input type="checkbox" id="norm6" data-cat-norm="sani">
                 <label for="norm6"><strong>SS.HH. para Público (Rango 51-100 personas)</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Si el aforo es de 51 a 100 personas: Hombres (2L, 2u, 2I) y Mujeres (2L, 2I).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm7">
+                <input type="checkbox" id="norm7" data-cat-norm="sani">
                 <label for="norm7"><strong>SS.HH. para Público (Adicionales)</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Por cada <strong>50 personas adicionales</strong> (a partir de 101), se añade: Hombres (1L, 1u, 1I) y Mujeres (1L, 1I).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm8">
+                <input type="checkbox" id="norm8" data-cat-norm="sani">
                 <label for="norm8"><strong>SS.HH. Accesible para Discapacitados</strong> <span class="norm-reference">Art. 29</span><span class="task-detail">Si se exigen 3 o más artefactos por servicio (ej. 3 inodoros para mujeres), uno de ellos debe ser accesible (dimensiones y barras de apoyo).</span></label>
             </div>
         </div>
@@ -588,15 +723,15 @@
         <div class="checklist-category">
             <h4>🚗 Categoría 3: Estacionamientos</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="norm9">
+                <input type="checkbox" id="norm9" data-cat-norm="parking">
                 <label for="norm9"><strong>Estacionamiento para Público</strong> <span class="norm-reference">Art. 30</span><span class="task-detail">Se requiere <strong>1 estacionamiento cada 20 personas</strong> de aforo. <br> <strong>Ejemplo:</strong> Para 100 personas, se necesitan 5 estacionamientos. Para 500 personas, 25 estacionamientos. <br> ⚠️ <strong>ATENCIÓN:</strong> Esto puede ser un desafío. La norma permite ubicar estacionamientos hasta a <strong>200 metros</strong> del local (Art. 30).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm10">
+                <input type="checkbox" id="norm10" data-cat-norm="parking">
                 <label for="norm10"><strong>Estacionamiento para Personal</strong> <span class="norm-reference">Art. 30</span><span class="task-detail">Se requiere <strong>1 estacionamiento cada 20 personas</strong> de personal.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm11">
+                <input type="checkbox" id="norm11" data-cat-norm="parking">
                 <label for="norm11"><strong>Estacionamiento para Discapacitados</strong> <span class="norm-reference">Art. 30</span><span class="task-detail">1 cada 50 estacionamientos requeridos. Medidas mínimas: 3.80 m x 5.00 m. Ubicación cercana al ingreso.</span></label>
             </div>
         </div>
@@ -604,19 +739,19 @@
         <div class="checklist-category">
             <h4>♿ Categoría 4: Accesibilidad y Seguridad</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="norm12">
+                <input type="checkbox" id="norm12" data-cat-norm="seguridad">
                 <label for="norm12"><strong>Ingreso Accesible</strong> <span class="norm-reference">Art. 10</span><span class="task-detail">Contar con al menos un ingreso accesible para personas con discapacidad (sin barreras arquitectónicas).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm13">
+                <input type="checkbox" id="norm13" data-cat-norm="seguridad">
                 <label for="norm13"><strong>Sistema de Extinción de Incendios</strong> <span class="norm-reference">Art. 7</span><span class="task-detail">Contar con sistemas de detección y extinción de incendios según la Norma A.130 (extintores, detectores de humo, etc.).</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm14">
+                <input type="checkbox" id="norm14" data-cat-norm="seguridad">
                 <label for="norm14"><strong>Salidas de Evacuación</strong> <span class="norm-reference">Art. 7 / A.130</span><span class="task-detail">Las puertas de salida deben cumplir con las medidas y requisitos de la Norma A.130 para evacuación.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm15">
+                <input type="checkbox" id="norm15" data-cat-norm="seguridad">
                 <label for="norm15"><strong>Diferencias de Nivel (Rampas)</strong> <span class="norm-reference">Art. 16</span><span class="task-detail">Cualquier desnivel debe contar con rampas con pendiente adecuada según Norma A.010.</span></label>
             </div>
         </div>
@@ -624,11 +759,11 @@
         <div class="checklist-category">
             <h4>🗑️ Categoría 5: Gestión de Residuos</h4>
             <div class="checklist-item">
-                <input type="checkbox" id="norm16">
+                <input type="checkbox" id="norm16" data-cat-norm="residuos">
                 <label for="norm16"><strong>Área de Acopio de Residuos</strong> <span class="norm-reference">Art. 33</span><span class="task-detail">Se requiere <strong>0.010 m³ por m² de superficie de venta</strong> para el área de acopio. <br> <strong>Ejemplo:</strong> Para 500 m², se necesitan 5 m³ de capacidad de almacenamiento de residuos.</span></label>
             </div>
             <div class="checklist-item">
-                <input type="checkbox" id="norm17">
+                <input type="checkbox" id="norm17" data-cat-norm="residuos">
                 <label for="norm17"><strong>Cumplimiento de la Ley de Residuos</strong> <span class="norm-reference">Art. 33</span><span class="task-detail">El almacenamiento y recolección debe sujetarse a la Ley General de Residuos Sólidos (N° 27314).</span></label>
             </div>
         </div>
@@ -641,38 +776,58 @@
         </div>
     </div>
 
-    <!-- Script para ambos checklists -->
-    <script>
-        // Contador para el primer checklist (Implementación)
-        document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]').forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                var total = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]').length;
-                var checked = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]:checked').length;
-                document.getElementById('contador').textContent = checked + ' / ' + total;
-            });
-        });
-        // Inicializar contador del primer checklist
-        window.addEventListener('load', function() {
-            var total = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]').length;
-            var checked = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]:checked').length;
-            document.getElementById('contador').textContent = checked + ' / ' + total;
-        });
+    <!-- ==================== 7.7 DASHBOARD DE CONTROL Y PROGRESO (NUEVO) ==================== -->
+    <h2>📊 Dashboard de Control y Progreso</h2>
+    <p>Este panel se actualiza automáticamente al marcar/desmarcar las tareas de los checklists. Mide el avance del proyecto, identifica riesgos y predice el escenario actual.</p>
 
-        // Contador para el segundo checklist (Norma A.070)
-        document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]').forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                var total = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]').length;
-                var checked = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]:checked').length;
-                document.getElementById('contadorNorm').textContent = checked + ' / ' + total;
-            });
-        });
-        // Inicializar contador del segundo checklist
-        window.addEventListener('load', function() {
-            var total = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]').length;
-            var checked = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]:checked').length;
-            document.getElementById('contadorNorm').textContent = checked + ' / ' + total;
-        });
-    </script>
+    <div id="dashboard-container">
+        <div class="dashboard-grid">
+
+            <!-- Tarjeta 1: Progreso General -->
+            <div class="dash-card">
+                <h4>📈 Progreso General</h4>
+                <div class="dash-number" id="progresoTotal">0%</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="barTotal" style="width:0%;"></div>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:#5a4531; margin-top:4px;">
+                    <span>Implementación: <strong id="pctImpl">0%</strong></span>
+                    <span>Normativa: <strong id="pctNorm">0%</strong></span>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Escenario Predicho -->
+            <div class="dash-card">
+                <h4>🔮 Escenario Predicho</h4>
+                <div id="escenarioBadge" class="escenario-prediction" style="background:#f8d7da; color:#721c24;">Escenario 1: Colapso</div>
+                <p style="font-size:0.9rem; margin-top:8px; color:#5a4531;" id="escenarioDescripcion">El proyecto está en riesgo crítico. Prioriza las tareas de Legal e Infraestructura.</p>
+            </div>
+
+            <!-- Tarjeta 3: Riesgos Críticos -->
+            <div class="dash-card">
+                <h4>🚨 Riesgos Críticos Activos</h4>
+                <div id="riesgosList">
+                    <div class="risk-item"><span class="risk-dot red"></span> Licencia de Funcionamiento (B-01)</div>
+                    <div class="risk-item"><span class="risk-dot red"></span> Tanque de Agua (B-02)</div>
+                    <div class="risk-item"><span class="risk-dot red"></span> SS.HH. Insuficientes (B-03)</div>
+                </div>
+                <p style="font-size:0.85rem; color:#6a5f52; margin-top:6px;" id="riesgosCount">3 riesgos críticos detectados</p>
+            </div>
+
+            <!-- Tarjeta 4: Progreso por Categoría -->
+            <div class="dash-card">
+                <h4>📊 Rendimiento por Categoría</h4>
+                <div class="category-chart" id="categoryChart">
+                    <div class="cat-row"><span class="cat-name">Legal</span><div class="cat-bar"><div class="cat-fill" id="catLegal" style="width:0%;"></div></div><span class="cat-pct" id="catLegalPct">0%</span></div>
+                    <div class="cat-row"><span class="cat-name">Infraestructura</span><div class="cat-bar"><div class="cat-fill" id="catInfra" style="width:0%;"></div></div><span class="cat-pct" id="catInfraPct">0%</span></div>
+                    <div class="cat-row"><span class="cat-name">Operación</span><div class="cat-bar"><div class="cat-fill" id="catOperacion" style="width:0%;"></div></div><span class="cat-pct" id="catOperacionPct">0%</span></div>
+                    <div class="cat-row"><span class="cat-name">Marketing</span><div class="cat-bar"><div class="cat-fill" id="catMarketing" style="width:0%;"></div></div><span class="cat-pct" id="catMarketingPct">0%</span></div>
+                    <div class="cat-row"><span class="cat-name">RR.HH.</span><div class="cat-bar"><div class="cat-fill" id="catRRHH" style="width:0%;"></div></div><span class="cat-pct" id="catRRHHPct">0%</span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- ==================== 8. CUADRO DE MANDO DE ESCENARIOS ==================== -->
     <h2>8. Cuadro de mando de escenarios (resumen)</h2>
@@ -721,5 +876,180 @@
     </div>
 
 </div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+    (function() {
+        "use strict";
+
+        // ---- Funciones de conteo y actualización del dashboard ----
+
+        function getCheckboxStates(prefix) {
+            // Obtiene el estado de todos los checkboxes cuyo id comienza con el prefijo
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const result = {};
+            checkboxes.forEach(cb => {
+                if (cb.id.startsWith(prefix)) {
+                    result[cb.id] = cb.checked;
+                }
+            });
+            return result;
+        }
+
+        function countChecked(prefix) {
+            const all = document.querySelectorAll('input[type="checkbox"][id^="' + prefix + '"]');
+            let checked = 0;
+            all.forEach(cb => { if (cb.checked) checked++; });
+            return { total: all.length, checked: checked };
+        }
+
+        function updateCounters() {
+            // Contador de Implementación
+            const impl = countChecked('chk');
+            document.getElementById('contadorImpl').textContent = impl.checked + ' / ' + impl.total;
+
+            // Contador de Normativa
+            const norm = countChecked('norm');
+            document.getElementById('contadorNorm').textContent = norm.checked + ' / ' + norm.total;
+        }
+
+        function updateDashboard() {
+            // ---- 1. Progreso General ----
+            const impl = countChecked('chk');
+            const norm = countChecked('norm');
+            const totalItems = impl.total + norm.total;
+            const totalChecked = impl.checked + norm.checked;
+            const pctGeneral = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
+            const pctImpl = impl.total > 0 ? Math.round((impl.checked / impl.total) * 100) : 0;
+            const pctNorm = norm.total > 0 ? Math.round((norm.checked / norm.total) * 100) : 0;
+
+            document.getElementById('progresoTotal').textContent = pctGeneral + '%';
+            document.getElementById('barTotal').style.width = pctGeneral + '%';
+            document.getElementById('pctImpl').textContent = pctImpl + '%';
+            document.getElementById('pctNorm').textContent = pctNorm + '%';
+
+            // ---- 2. Progreso por Categoría (Implementación) ----
+            const cats = ['legal', 'infra', 'operacion', 'marketing', 'rrhh'];
+            const catMap = {
+                'legal': 'catLegal',
+                'infra': 'catInfra',
+                'operacion': 'catOperacion',
+                'marketing': 'catMarketing',
+                'rrhh': 'catRRHH'
+            };
+            const catPctMap = {
+                'legal': 'catLegalPct',
+                'infra': 'catInfraPct',
+                'operacion': 'catOperacionPct',
+                'marketing': 'catMarketingPct',
+                'rrhh': 'catRRHHPct'
+            };
+
+            cats.forEach(cat => {
+                const items = document.querySelectorAll('input[type="checkbox"][data-cat="' + cat + '"]');
+                let total = items.length;
+                let checked = 0;
+                items.forEach(cb => { if (cb.checked) checked++; });
+                let pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+                const barId = catMap[cat];
+                const pctId = catPctMap[cat];
+                if (document.getElementById(barId)) {
+                    document.getElementById(barId).style.width = pct + '%';
+                }
+                if (document.getElementById(pctId)) {
+                    document.getElementById(pctId).textContent = pct + '%';
+                }
+            });
+
+            // ---- 3. Riesgos Críticos (basado en chk1, chk5, chk6) ----
+            const riesgo1 = document.getElementById('chk1');
+            const riesgo2 = document.getElementById('chk5');
+            const riesgo3 = document.getElementById('chk6');
+            const riesgosList = document.getElementById('riesgosList');
+            let riesgosActivos = [];
+
+            if (riesgo1 && !riesgo1.checked) riesgosActivos.push('Licencia de Funcionamiento (B-01)');
+            if (riesgo2 && !riesgo2.checked) riesgosActivos.push('Tanque de Agua (B-02)');
+            if (riesgo3 && !riesgo3.checked) riesgosActivos.push('SS.HH. Insuficientes (B-03)');
+
+            // Construir HTML de riesgos
+            let htmlRiesgos = '';
+            if (riesgosActivos.length === 0) {
+                htmlRiesgos = '<div class="risk-item"><span class="risk-dot green"></span> No hay riesgos críticos activos. ¡Bien!</div>';
+                document.getElementById('riesgosCount').textContent = '0 riesgos críticos. El proyecto está encaminado.';
+            } else {
+                riesgosActivos.forEach(r => {
+                    htmlRiesgos += '<div class="risk-item"><span class="risk-dot red"></span> ' + r + '</div>';
+                });
+                document.getElementById('riesgosCount').textContent = riesgosActivos.length + ' riesgo(s) crítico(s) detectado(s). Prioriza su solución.';
+            }
+            riesgosList.innerHTML = htmlRiesgos;
+
+            // ---- 4. Escenario Predicho ----
+            const badge = document.getElementById('escenarioBadge');
+            const desc = document.getElementById('escenarioDescripcion');
+            // Evaluación de escenario basada en riesgos críticos y porcentaje general
+            let escenario = '';
+            let color = '';
+            let texto = '';
+
+            if (pctGeneral < 20 || riesgosActivos.length >= 2) {
+                escenario = 'Escenario 1: Colapso';
+                color = '#f8d7da';
+                texto = 'El proyecto está en riesgo crítico. Prioriza las tareas de Legal e Infraestructura.';
+            } else if (pctGeneral < 50 || riesgosActivos.length === 1) {
+                escenario = 'Escenario 2: Subsistencia';
+                color = '#fff3cd';
+                texto = 'Has avanzado, pero aún hay brechas importantes. Enfócate en completar las tareas pendientes.';
+            } else if (pctGeneral < 80) {
+                escenario = 'Escenario 3: Crecimiento Sólido';
+                color = '#d4edda';
+                texto = '¡Buen progreso! Estás en camino al éxito. Refuerza las áreas de marketing y operación.';
+            } else {
+                escenario = 'Escenario 4: Refugio Integral';
+                color = '#cce5ff';
+                texto = 'Excelente avance. Estás en la ruta del éxito exponencial. ¡A escalar!';
+            }
+            badge.textContent = escenario;
+            badge.style.background = color;
+            badge.style.color = '#2d2a24';
+            desc.textContent = texto;
+
+            // ---- 5. Actualizar contadores de resumen ----
+            updateCounters();
+        }
+
+        // ---- Vincular eventos a todos los checkboxes ----
+        function bindEvents() {
+            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    updateDashboard();
+                });
+            });
+        }
+
+        // ---- Inicializar ----
+        window.addEventListener('load', function() {
+            // Primero actualizamos los contadores de los checklists
+            updateCounters();
+            // Luego actualizamos el dashboard completo
+            updateDashboard();
+            // Vinculamos eventos para que se actualice en tiempo real
+            bindEvents();
+            // También ejecutamos al hacer clic en cualquier lugar (por si hay cambios externos)
+            document.addEventListener('click', function() {
+                // Solo actualizamos si hay cambios en checkboxes (lo hacemos en el evento change)
+                // pero por si acaso, lo ejecutamos con un pequeño retraso para no sobrecargar
+            });
+        });
+
+        // También actualizar al cargar la página (por si los checkboxes tienen estado guardado)
+        // Nota: El estado de los checkboxes se pierde al recargar, pero localStorage podría usarse en el futuro.
+        // Por ahora, la lógica es puramente reactiva a los clicks.
+
+    })();
+</script>
+
 </body>
 </html>
