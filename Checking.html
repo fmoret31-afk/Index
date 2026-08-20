@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Refugio de Rob - Panorama Estratégico Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f0eb;
+            color: #2d2a24;
+            padding: 30px 20px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 45px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #3d2c1b;
+            border-left: 6px solid #b48a5c;
+            padding-left: 20px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.9rem;
+            color: #3d2c1b;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #e3d6c8;
+            padding-bottom: 8px;
+        }
+        h3 {
+            font-size: 1.4rem;
+            color: #5a4531;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+        h4 {
+            font-size: 1.15rem;
+            color: #6a5540;
+            margin-top: 22px;
+            margin-bottom: 6px;
+        }
+        p {
+            margin-bottom: 14px;
+        }
+        ul, ol {
+            padding-left: 30px;
+            margin-bottom: 18px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        .highlight-box {
+            background: #f8f3ed;
+            border-left: 6px solid #b48a5c;
+            padding: 18px 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px 0;
+            font-size: 0.95rem;
+        }
+        th {
+            background: #3d2c1b;
+            color: #fff;
+            padding: 12px 10px;
+            text-align: left;
+        }
+        td {
+            padding: 10px 10px;
+            border-bottom: 1px solid #e0d6ca;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background: #faf6f1;
+        }
+        .badge {
+            display: inline-block;
+            background: #b48a5c;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-crit {
+            background: #b33c2e;
+        }
+        .badge-alta {
+            background: #d48c3c;
+        }
+        .badge-media {
+            background: #5f7e8c;
+        }
+        .escenario-colapso {
+            background: #fce9e7;
+            border-left: 6px solid #b33c2e;
+            padding: 12px 18px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        .escenario-subsistencia {
+            background: #fdf4e3;
+            border-left: 6px solid #d48c3c;
+            padding: 12px 18px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        .escenario-crecimiento {
+            background: #e6f0e6;
+            border-left: 6px solid #3f7e5c;
+            padding: 12px 18px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        .escenario-integral {
+            background: #e1ece9;
+            border-left: 6px solid #1f6b4a;
+            padding: 12px 18px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        .checklist-section {
+            margin: 30px 0 20px 0;
+        }
+        .checklist-category {
+            background: #f8f3ed;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+            border: 1px solid #e3d6c8;
+        }
+        .checklist-category h4 {
+            margin-top: 0;
+            color: #3d2c1b;
+            border-bottom: 1px solid #dccfc0;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            font-size: 1.2rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 6px 0;
+            border-bottom: 1px dashed #ede4da;
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 4px;
+            accent-color: #b48a5c;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .checklist-item label {
+            font-size: 0.98rem;
+            line-height: 1.5;
+            cursor: pointer;
+            flex: 1;
+        }
+        .checklist-item .task-detail {
+            font-size: 0.9rem;
+            color: #6a5f52;
+            display: block;
+            margin-top: 2px;
+        }
+        .checklist-item .norm-reference {
+            display: inline-block;
+            background: #3d2c1b;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 1px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        .checklist-summary {
+            background: #3d2c1b;
+            color: #fff;
+            padding: 18px 25px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .checklist-summary span {
+            font-weight: 500;
+        }
+        .checklist-summary .count {
+            background: #b48a5c;
+            padding: 4px 18px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+        }
+        .footer-note {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e3d6c8;
+            font-size: 0.95rem;
+            color: #6a5f52;
+            text-align: center;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 20px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 8px 6px; }
+            .checklist-item { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>🌿 El Refugio de Rob – Finca &amp; Eventos</h1>
+    <p style="font-size:1.2rem; color:#5a4a3a;"><strong>Panorama Estratégico Completo</strong> · Modelo de Negocio, Propuesta de Valor, Escenarios y Plan de Acción</p>
+
+    <!-- ==================== 1. PROPUESTA DE VALOR ==================== -->
+    <h2>1. Propuesta de Valor</h2>
+
+    <div class="highlight-box">
+        <strong>Declaración central:</strong><br>
+        "El Refugio de Rob es el espacio campestre donde la naturaleza se encuentra con la tranquilidad absoluta. A solo pasos del hospital, ofrecemos un entorno seguro y silencioso para tus celebraciones, con una gestión profesional que te permite disfrutar sin preocuparte por la limpieza, el ruido o la organización."
+    </div>
+
+    <h3>Los 5 pilares de tu promesa</h3>
+    <table>
+        <thead>
+            <tr><th>Pilar de Valor</th><th>¿Qué prometes?</th><th>¿Cómo lo cumples?</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>1. Tranquilidad Certificada</strong></td><td>"No habrá ruido molesto. El hospital no se quejará."</td><td>Controles de decibelios, horarios estrictos, límite de volumen en el contrato.</td></tr>
+            <tr><td><strong>2. Seguridad Garantizada</strong></td><td>"Tus hijos y tus seres queridos están protegidos."</td><td>Extintores, botiquín, señalización, supervisión, acceso rápido al hospital.</td></tr>
+            <tr><td><strong>3. Limpieza Impecable</strong></td><td>"Llegas y todo brilla. Te vas y nosotros limpiamos."</td><td>Checklists pre y post‑evento, productos ecológicos, baños impecables.</td></tr>
+            <tr><td><strong>4. Entorno Natural</strong></td><td>"Desconectas del asfalto y respiras campo."</td><td>Áreas verdes recuperadas, jardines cuidados, ambiente campestre auténtico.</td></tr>
+            <tr><td><strong>5. Gestión Sin Estrés</strong></td><td>"Tú solo invitas; nosotros nos encargamos del resto."</td><td>Reservas digitales, coordinación con proveedores, atención personalizada.</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== 2. IMPACTO DEL HOSPITAL ==================== -->
+    <h2>2. El factor Hospital: de restricción a oportunidad</h2>
+    <p>La cercanía al hospital es <strong>tu mayor diferenciador</strong>. No es un problema si lo gestionas bien; es tu ventaja competitiva.</p>
+
+    <h3>Doble cara del hospital</h3>
+    <table>
+        <thead><tr><th>Dimensión</th><th>Riesgo</th><th>Oportunidad</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Tranquilidad</strong></td><td>Ruido debe ser rigurosamente controlado.</td><td>Te posicionas como <em>"el espacio más tranquilo de la zona"</em>.</td></tr>
+            <tr><td><strong>Seguridad</strong></td><td>Tránsito de ambulancias puede generar estrés.</td><td>Proximidad a servicios médicos = valor añadido para eventos con niños o mayores.</td></tr>
+            <tr><td><strong>Imagen</strong></td><td>Quejas por ruido dañan la reputación.</td><td>El hospital puede ser tu mejor aliado de marketing.</td></tr>
+            <tr><td><strong>Operación</strong></td><td>Restricción de horarios nocturnos con música alta.</td><td>Especialización en eventos diurnos → nicho claro.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Nuevos segmentos de clientes gracias al hospital</h3>
+    <ul>
+        <li><strong>Personal médico y enfermeras:</strong> necesitan espacios para celebrar cumpleaños, despedidas o reuniones informales después de turnos.</li>
+        <li><strong>Pacientes y familiares:</strong> espacios para recibir visitas, celebrar mejorías o simplemente respirar aire fresco.</li>
+        <li><strong>Eventos del hospital:</strong> capacitaciones, retiros de bienestar, reuniones de equipo.</li>
+    </ul>
+    <p><strong>Acción:</strong> Crear un <strong>"Paquete Hospital"</strong> con descuentos especiales para el personal sanitario y tarifa preferencial para eventos del hospital.</p>
+
+    <h3>Alianza estratégica con el hospital</h3>
+    <ul>
+        <li>Ofrecer espacio gratuito o a costo para eventos internos del hospital (Día del Médico, capacitaciones) a cambio de visibilidad y recomendaciones.</li>
+        <li>Incluir al hospital en el marketing: <em>"A solo 5 minutos del Hospital de Cosío de Pomar. Tranquilidad y seguridad para tu evento."</em></li>
+        <li>Coordinar protocolos de emergencia conjuntos.</li>
+    </ul>
+
+    <!-- ==================== 3. BREVES CRÍTICAS ==================== -->
+    <h2>3. Brechas críticas que debes resolver</h2>
+    <table>
+        <thead><tr><th>Código</th><th>Brecha</th><th>Impacto</th><th>Urgencia</th></tr></thead>
+        <tbody>
+            <tr><td><strong>B‑01</strong></td><td>Sin Licencia de Funcionamiento</td><td>No se puede operar formalmente. Riesgo de clausura.</td><td><span class="badge badge-crit">CRÍTICA</span></td></tr>
+            <tr><td><strong>B‑02</strong></td><td>Sin Tanque de Agua</td><td>Cortes nocturnos interrumpen el servicio. Riesgo de cancelaciones.</td><td><span class="badge badge-crit">CRÍTICA</span></td></tr>
+            <tr><td><strong>B‑03</strong></td><td>SS.HH. Insuficientes</td><td>Incumplimiento Norma A.070 (RNE). Riesgo de sanción.</td><td><span class="badge badge-alta">ALTA</span></td></tr>
+            <tr><td><strong>B‑04</strong></td><td>Infraestructura Deteriorada</td><td>Paredes de triplay, pintura, césped en mal estado → mala primera impresión.</td><td><span class="badge badge-alta">ALTA</span></td></tr>
+            <tr><td><strong>B‑05</strong></td><td>Acceso de Tierra con pendiente</td><td>Percepción de descuido.</td><td><span class="badge badge-media">MEDIA</span></td></tr>
+            <tr><td><strong>B‑06</strong></td><td>Sin Sistema de Reservas</td><td>Gestión manual (WhatsApp, papel). Riesgo de doble reserva.</td><td><span class="badge badge-media">MEDIA</span></td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== 4. ESCENARIOS ==================== -->
+    <h2>4. Los 4 escenarios posibles</h2>
+
+    <div class="escenario-colapso">
+        <h4 style="margin-top:0;">🔴 Escenario 1: El Colapso (peor caso)</h4>
+        <p><strong>Qué pasa:</strong> No se tramita licencia. Se opera "bajo la mesa". El ruido genera quejas del hospital. No se instala tanque de agua. En el primer evento grande, los baños colapsan. Mala experiencia → reseñas negativas.</p>
+        <p><strong>Consecuencia:</strong> Clausura municipal a los 3 meses. Pérdida total de la inversión.</p>
+        <p><strong>Probabilidad:</strong> <span class="badge badge-crit">ALTA</span> si se ignora el análisis técnico.</p>
+    </div>
+
+    <div class="escenario-subsistencia">
+        <h4 style="margin-top:0;">🟠 Escenario 2: La Subsistencia (caso mediocre)</h4>
+        <p><strong>Qué pasa:</strong> Se obtiene licencia con retraso. Se evita conflicto con el hospital pero no se genera alianza. Se instala un tanque pequeño. Se arregla lo urgente pero el césped y la pintura siguen descuidados. Solo alquiler de espacio, sin membresías ni venta cruzada.</p>
+        <p><strong>Consecuencia:</strong> 4‑5 eventos al mes. Ingresos justos para cubrir gastos. Sin rentabilidad para reinvertir. Muy vulnerable.</p>
+        <p><strong>Probabilidad:</strong> <span class="badge badge-media">MEDIA</span> (si se hace lo mínimo).</p>
+    </div>
+
+    <div class="escenario-crecimiento">
+        <h4 style="margin-top:0;">🟢 Escenario 3: El Crecimiento Sólido (éxito táctico)</h4>
+        <p><strong>Qué pasa:</strong> Licencia obtenida en plazo. Comunicación formal con el hospital → sin quejas. Inversión en todo lo crítico (tanque grande, SS.HH., pintura, césped). Se implementa sistema de reservas digital, membresías y paquetes de venta cruzada. Marketing activo en redes.</p>
+        <p><strong>Consecuencia:</strong> 6‑8 eventos mensuales. Rentabilidad del 20‑30%. Negocio sostenible y con confianza para futuras inversiones.</p>
+        <p><strong>Probabilidad:</strong> <span class="badge badge-alta">MEDIA‑ALTA</span> (si se ejecuta el plan disciplinadamente).</p>
+    </div>
+
+    <div class="escenario-integral">
+        <h4 style="margin-top:0;">🌟 Escenario 4: El Refugio Integral (el "home run")</h4>
+        <p><strong>Qué pasa:</strong> Alianza <strong>formal</strong> con el hospital: espacio gratuito para eventos del hospital a cambio de recomendación y visibilidad. Infraestructura de máxima calidad (acceso pavimentado, jardines impecables). Modelo mixto: alquiler premium + membresías + paquetes wellness + días de campo corporativos. Caso de éxito en prensa local.</p>
+        <p><strong>Consecuencia:</strong> 10+ eventos al mes. Rentabilidad superior al 40%. Escalabilidad: ampliación a 1,000+ m² y posible franquicia.</p>
+        <p><strong>Probabilidad:</strong> <span class="badge badge-media">MEDIA‑BAJA</span> (requiere visión, negociación y ejecución impecable, pero es alcanzable).</p>
+    </div>
+
+    <!-- ==================== 5. ÁRBOL DE DECISIÓN ==================== -->
+    <h2>5. Árbol de decisión: ¿cómo pasar del 1 al 4?</h2>
+    <ul>
+        <li><strong>Fase 0 (Mes 1):</strong> Resolver brechas críticas (B‑01, B‑02, B‑03). <br> <em>Decisión:</em> ¿Inviertes en resolverlas? <strong>NO</strong> → Escenario 1. <strong>SÍ</strong> → Fase 1.</li>
+        <li><strong>Fase 1 (Meses 2‑3):</strong> Operación piloto con 5 eventos. Medir satisfacción y control de ruido. <br> <em>Decisión:</em> ¿Satisfacción ≥ 4.5 y sin quejas de ruido? <strong>NO</strong> → Ajustar o Escenario 2. <strong>SÍ</strong> → Fase 2.</li>
+        <li><strong>Fase 2 (Meses 4‑6):</strong> Lanzar membresías, venta cruzada y contactar formalmente al hospital. <br> <em>Decisión:</em> ¿El hospital acepta una alianza activa? <strong>NO</strong> → Escenario 3. <strong>SÍ</strong> → Fase 3.</li>
+        <li><strong>Fase 3 (Meses 7‑12):</strong> Ejecutar campaña "Bienestar cerca del hospital". Lanzar paquetes premium y evaluar ampliación. → <strong>Escenario 4.</strong></li>
+    </ul>
+
+    <!-- ==================== 6. QUÉ MEJORAR ==================== -->
+    <h2>6. Qué tienes que mejorar para llegar al público</h2>
+
+    <h3>Mejora 1: La primera impresión (lo que ven al llegar)</h3>
+    <ul>
+        <li><strong>Acceso:</strong> Compactar tierra, poner grava y delimitar con macetas o letreros con el logo del búho.</li>
+        <li><strong>Infraestructura visible:</strong> Pintar paredes de triplay con colores cálidos y rústicos.</li>
+        <li><strong>Césped:</strong> Sembrar grass de crecimiento rápido en las áreas más visibles y regar diariamente.</li>
+    </ul>
+
+    <h3>Mejora 2: La prueba social (generar confianza inmediata)</h3>
+    <ul>
+        <li><strong>Eventos "Beta" a costo cero o simbólico:</strong> Invitar a 3 familias conocidas (influencers locales, amigos con muchos contactos) a celebrar gratis a cambio de fotos y testimonios reales.</li>
+        <li><strong>Alianza con el hospital antes de abrir:</strong> Ofrecer un evento gratuito para el personal del hospital (ej. "Día de Campo para Enfermeras").</li>
+    </ul>
+
+    <h3>Mejora 3: La comunicación emocional (de qué hablas en redes)</h3>
+    <ul>
+        <li><strong>Deja de decir:</strong> "Alquilo un salón campestre."</li>
+        <li><strong>Empieza a decir:</strong> "¿Cansado del ruido de la ciudad? Celebra el cumpleaños de tus hijos donde solo se escuchen las risas y los pájaros. 'El Refugio' está diseñado para tu paz mental."</li>
+        <li><strong>Contenido visual:</strong> Graba videos cortos mostrando el sonido ambiente (pájaros, viento) vs. el ruido de la ciudad. Muestra a niños jugando en el pasto seguro.</li>
+    </ul>
+
+    <h3>Mejora 4: El control del ruido (tu arma secreta)</h3>
+    <ul>
+        <li><strong>Convierte la restricción en ventaja:</strong> Pon en tu web y contrato: <em>"En El Refugio cuidamos a nuestros vecinos del hospital. Por eso, tenemos un sistema de monitoreo de ruido para garantizar la tranquilidad de todos. Tu evento será especial, no escandaloso."</em></li>
+        <li><strong>Visualízalo:</strong> Muestra una foto del decibelímetro en acción en tus redes.</li>
+    </ul>
+
+    <h3>Mejora 5: La oferta de lanzamiento (el gancho comercial)</h3>
+    <ul>
+        <li><strong>"Membresía Inaugural Búho":</strong> Ofrece 50 membresías a mitad de precio (S/ 50 en lugar de S/ 99) para los primeros que reserven. Genera liquidez y crea embajadores.</li>
+        <li><strong>Promoción "Refugio Seguro":</strong> Si reservan en el primer mes, incluye una sesión de fotos de 30 minutos gratis para el cumpleañero.</li>
+    </ul>
+
+    <h3>Mejora 6: La alianza con el hospital (el diferenciador absoluto)</h3>
+    <ul>
+        <li><strong>Acción concreta:</strong> Agenda una reunión con el departamento de Bienestar o Comunicaciones del hospital. Lleva un dossier con tu proyecto.</li>
+        <li><strong>Propuesta:</strong> <em>"Queremos ser un espacio de respaldo para ustedes. Si tienen un evento interno, se lo ofrecemos a costo. A cambio, nos permiten poner un cartel en su cartelera interna y recomendar nuestro espacio a sus trabajadores."</em></li>
+        <li><strong>Resultado:</strong> Te conviertes en "el lugar recomendado por el hospital". Eso es oro en confianza.</li>
+    </ul>
+
+    <!-- ==================== 7. PLAN DE ACCIÓN 0-60 DÍAS ==================== -->
+    <h2>7. Plan de acción para llegar al público (0‑60 días)</h2>
+    <table>
+        <thead><tr><th>Plazo</th><th>Acción</th><th>Responsable</th><th>Impacto en el público</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Semana 1</strong></td><td>Ir al hospital a presentar el proyecto.</td><td>Propietario</td><td>Genera legitimidad y abre nicho cautivo.</td></tr>
+            <tr><td><strong>Semana 1‑2</strong></td><td>Reparar y pintar áreas visibles (acceso, paredes principales).</td><td>Personal / Contratista</td><td>Mejora drástica la primera impresión visual.</td></tr>
+            <tr><td><strong>Semana 2</strong></td><td>Crear perfil de Instagram/Facebook con el mensaje emocional. Subir fotos del proceso de mejora.</td><td>Administración / Marketing</td><td>Comunica la transformación y genera expectativa.</td></tr>
+            <tr><td><strong>Semana 3</strong></td><td>Organizar el primer evento "Beta" (familiares o amigos con niños). Grabar videos y tomar fotos.</td><td>Propietario / Administración</td><td>Genera el primer contenido visual auténtico.</td></tr>
+            <tr><td><strong>Mes 1</strong></td><td>Lanzar la "Membresía Inaugural" con descuento por tiempo limitado.</td><td>Administración</td><td>Crea urgencia y capta los primeros 20‑30 clientes fidelizados.</td></tr>
+            <tr><td><strong>Mes 2</strong></td><td>Publicar testimonios en redes y web. Lanzar campaña "El Refugio, el espacio recomendado por el hospital" (con su permiso).</td><td>Administración / Marketing</td><td>Convierte la restricción en tu mayor activo de marketing.</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== 7.5 CHECKLIST DE IMPLEMENTACIÓN ==================== -->
+    <h2>📋 Checklist de Implementación (Lista de Verificación)</h2>
+    <p>Utiliza esta lista para monitorear el avance de cada tarea crítica. Marca cada ítem a medida que lo completes.</p>
+
+    <div class="checklist-section">
+
+        <!-- Categoría 1: Legal y Permisos -->
+        <div class="checklist-category">
+            <h4>✅ Categoría 1: Legal y Permisos (Fundacional)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk1">
+                <label for="chk1"><strong>Licencia de Funcionamiento</strong> <span class="task-detail">Tramitar ante la municipalidad distrital. Reunir todos los requisitos (RUC, croquis, etc.).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk2">
+                <label for="chk2"><strong>Inspección Técnica de Seguridad (ITSE)</strong> <span class="task-detail">Gestionar la inspección y obtener el certificado que acredite las condiciones de seguridad.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk3">
+                <label for="chk3"><strong>Seguro de Responsabilidad Civil</strong> <span class="task-detail">Contratar una póliza que cubra daños a terceros dentro de las instalaciones.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk4">
+                <label for="chk4"><strong>Verificación de Zonificación</strong> <span class="task-detail">Confirmar con la municipalidad que el uso de "eventos y recreación" está permitido en el terreno.</span></label>
+            </div>
+        </div>
+
+        <!-- Categoría 2: Infraestructura Física -->
+        <div class="checklist-category">
+            <h4>🔧 Categoría 2: Infraestructura Física (Habilitación)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk5">
+                <label for="chk5"><strong>Tanque de almacenamiento de agua</strong> <span class="task-detail">Instalar un tanque con capacidad para al menos 24 horas de operación (mitiga cortes nocturnos).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk6">
+                <label for="chk6"><strong>Adecuación de SS.HH. (Norma A.070)</strong> <span class="task-detail">Verificar y ampliar los servicios higiénicos según el aforo máximo proyectado.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk7">
+                <label for="chk7"><strong>Reparación de infraestructura visible</strong> <span class="task-detail">Reemplazar paredes de triplay deterioradas, pintar áreas principales, reparar accesos.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk8">
+                <label for="chk8"><strong>Recuperación de áreas verdes y césped</strong> <span class="task-detail">Sembrar grass de crecimiento rápido, podar jardines, instalar riego básico.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk9">
+                <label for="chk9"><strong>Mejora del acceso (tramo de tierra)</strong> <span class="task-detail">Compactar, colocar grava y señalizar el ingreso para mejorar la primera impresión.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk10">
+                <label for="chk10"><strong>Señalización de seguridad</strong> <span class="task-detail">Colocar señales de "Piso mojado", rutas de evacuación, extintores y zonas de seguridad.</span></label>
+            </div>
+        </div>
+
+        <!-- Categoría 3: Operación y Procesos -->
+        <div class="checklist-category">
+            <h4>⚙️ Categoría 3: Operación y Procesos (Estandarización)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk11">
+                <label for="chk11"><strong>Sistema de reservas digital</strong> <span class="task-detail">Implementar un software o herramienta (ej. calendario compartido) para evitar dobles reservas.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk12">
+                <label for="chk12"><strong>Checklist de preparación del establecimiento</strong> <span class="task-detail">Documentar y usar un checklist antes de cada evento (limpieza, servicios, áreas verdes).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk13">
+                <label for="chk13"><strong>Checklist de limpieza post-evento</strong> <span class="task-detail">Documentar y usar un checklist después de cada evento (residuos, baños, cierre).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk14">
+                <label for="chk14"><strong>Protocolo de control de ruido</strong> <span class="task-detail">Adquirir un decibelímetro, establecer límites (70 dB día / 60 dB noche) y registrar mediciones.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk15">
+                <label for="chk15"><strong>Plan de mantenimiento preventivo</strong> <span class="task-detail">Elaborar un cronograma mensual de inspecciones eléctricas, hidráulicas y de jardinería.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk16">
+                <label for="chk16"><strong>Gestión de residuos (contrato con EO-RS)</strong> <span class="task-detail">Contratar una empresa autorizada para la recogida de residuos y establecer segregación en origen.</span></label>
+            </div>
+        </div>
+
+        <!-- Categoría 4: Marketing y Comunicación -->
+        <div class="checklist-category">
+            <h4>📢 Categoría 4: Marketing y Comunicación (Llegar al público)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk17">
+                <label for="chk17"><strong>Crear perfiles en redes sociales (Instagram, Facebook)</strong> <span class="task-detail">Subir contenido que destaque tranquilidad, seguridad y naturaleza. Mostrar el proceso de mejora.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk18">
+                <label for="chk18"><strong>Diseñar la oferta de lanzamiento</strong> <span class="task-detail">Definir la "Membresía Inaugural Búho" (50% descuento) y la promoción "Refugio Seguro".</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk19">
+                <label for="chk19"><strong>Alianza formal con el hospital</strong> <span class="task-detail">Reunirse con el departamento de Bienestar, ofrecer espacio gratuito para eventos internos a cambio de recomendación y visibilidad.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk20">
+                <label for="chk20"><strong>Realizar eventos "Beta" y recopilar testimonios</strong> <span class="task-detail">Invitar a familias conocidas o micro-influencers para generar contenido visual y reseñas reales.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk21">
+                <label for="chk21"><strong>Campaña "El Refugio, recomendado por el hospital"</strong> <span class="task-detail">Una vez obtenido el permiso del hospital, lanzar esta campaña en redes y web.</span></label>
+            </div>
+        </div>
+
+        <!-- Categoría 5: Recursos Humanos -->
+        <div class="checklist-category">
+            <h4>👥 Categoría 5: Recursos Humanos (Equipo)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk22">
+                <label for="chk22"><strong>Contratación de personal clave</strong> <span class="task-detail">Definir y contratar: Administración, personal operativo, limpieza y mantenimiento.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk23">
+                <label for="chk23"><strong>Capacitación en procedimientos y SST</strong> <span class="task-detail">Capacitar a todo el personal en los checklists, control de ruido, atención al cliente y primeros auxilios.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="chk24">
+                <label for="chk24"><strong>Definición de horarios y roles</strong> <span class="task-detail">Establecer turnos, responsabilidades claras y canales de comunicación interna.</span></label>
+            </div>
+        </div>
+
+        <!-- Resumen del checklist -->
+        <div class="checklist-summary">
+            <span>📌 Total de tareas: <strong>24</strong></span>
+            <span>✅ Completadas: <span id="contador" class="count">0</span></span>
+            <span style="font-size:0.9rem; opacity:0.9;">(Marca las casillas para actualizar el contador)</span>
+        </div>
+    </div>
+
+    <!-- ==================== 7.6 CHECKLIST DE CUMPLIMIENTO NORMATIVO (RNE A.070) NUEVO ==================== -->
+    <h2>📜 Checklist de Cumplimiento Normativo (RNE A.070 - Comercio)</h2>
+    <p>Basado en el Reglamento Nacional de Edificaciones, aplicable específicamente a <strong>"Locales para eventos y salones de baile"</strong> (Art. 2, inciso e). Este checklist es <strong>obligatorio</strong> para la obtención de la Licencia de Funcionamiento y el ITSE.</p>
+
+    <div class="checklist-section">
+
+        <div class="checklist-category">
+            <h4>📏 Categoría 1: Aforo y Dimensiones Generales</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm1">
+                <label for="norm1"><strong>Clasificación correcta del uso</strong> <span class="norm-reference">Art. 2-e</span><span class="task-detail">Verificar que la municipalidad clasifique el predio como "Local para eventos y salones de baile".</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm2">
+                <label for="norm2"><strong>Cálculo del Aforo Máximo</strong> <span class="norm-reference">Art. 8</span><span class="task-detail">Según la norma, para eventos se considera <strong>1 persona por m²</strong> de área de venta (área útil del evento). <br> <strong>Ejemplo:</strong> Si el área de evento es 500 m², el aforo máximo es 500 personas. <br> ⚠️ <strong>CRÍTICO:</strong> Este cálculo debe ser validado y aprobado por la municipalidad.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm3">
+                <label for="norm3"><strong>Altura libre mínima</strong> <span class="norm-reference">Art. 9</span><span class="task-detail">La altura mínima de piso terminado a cielo raso en áreas techadas debe ser de <strong>3.00 metros</strong>.</span></label>
+            </div>
+        </div>
+
+        <div class="checklist-category">
+            <h4>🚻 Categoría 2: Servicios Higiénicos (SS.HH.)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm4">
+                <label for="norm4"><strong>SS.HH. para Empleados</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Calcular según el número de empleados (considerando 10 m² por empleado). <br> <strong>Ejemplo:</strong> Si tienes 5 empleados (50 m²), aplica la tabla: Hombres (1L, 1u, 1I) y Mujeres (1L, 1I).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm5">
+                <label for="norm5"><strong>SS.HH. para Público (Rango 17-50 personas)</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Si el aforo es de 17 a 50 personas: Hombres (1L, 1u, 1I) y Mujeres (1L, 1I).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm6">
+                <label for="norm6"><strong>SS.HH. para Público (Rango 51-100 personas)</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Si el aforo es de 51 a 100 personas: Hombres (2L, 2u, 2I) y Mujeres (2L, 2I).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm7">
+                <label for="norm7"><strong>SS.HH. para Público (Adicionales)</strong> <span class="norm-reference">Art. 22</span><span class="task-detail">Por cada <strong>50 personas adicionales</strong> (a partir de 101), se añade: Hombres (1L, 1u, 1I) y Mujeres (1L, 1I).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm8">
+                <label for="norm8"><strong>SS.HH. Accesible para Discapacitados</strong> <span class="norm-reference">Art. 29</span><span class="task-detail">Si se exigen 3 o más artefactos por servicio (ej. 3 inodoros para mujeres), uno de ellos debe ser accesible (dimensiones y barras de apoyo).</span></label>
+            </div>
+        </div>
+
+        <div class="checklist-category">
+            <h4>🚗 Categoría 3: Estacionamientos</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm9">
+                <label for="norm9"><strong>Estacionamiento para Público</strong> <span class="norm-reference">Art. 30</span><span class="task-detail">Se requiere <strong>1 estacionamiento cada 20 personas</strong> de aforo. <br> <strong>Ejemplo:</strong> Para 100 personas, se necesitan 5 estacionamientos. Para 500 personas, 25 estacionamientos. <br> ⚠️ <strong>ATENCIÓN:</strong> Esto puede ser un desafío. La norma permite ubicar estacionamientos hasta a <strong>200 metros</strong> del local (Art. 30).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm10">
+                <label for="norm10"><strong>Estacionamiento para Personal</strong> <span class="norm-reference">Art. 30</span><span class="task-detail">Se requiere <strong>1 estacionamiento cada 20 personas</strong> de personal.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm11">
+                <label for="norm11"><strong>Estacionamiento para Discapacitados</strong> <span class="norm-reference">Art. 30</span><span class="task-detail">1 cada 50 estacionamientos requeridos. Medidas mínimas: 3.80 m x 5.00 m. Ubicación cercana al ingreso.</span></label>
+            </div>
+        </div>
+
+        <div class="checklist-category">
+            <h4>♿ Categoría 4: Accesibilidad y Seguridad</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm12">
+                <label for="norm12"><strong>Ingreso Accesible</strong> <span class="norm-reference">Art. 10</span><span class="task-detail">Contar con al menos un ingreso accesible para personas con discapacidad (sin barreras arquitectónicas).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm13">
+                <label for="norm13"><strong>Sistema de Extinción de Incendios</strong> <span class="norm-reference">Art. 7</span><span class="task-detail">Contar con sistemas de detección y extinción de incendios según la Norma A.130 (extintores, detectores de humo, etc.).</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm14">
+                <label for="norm14"><strong>Salidas de Evacuación</strong> <span class="norm-reference">Art. 7 / A.130</span><span class="task-detail">Las puertas de salida deben cumplir con las medidas y requisitos de la Norma A.130 para evacuación.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm15">
+                <label for="norm15"><strong>Diferencias de Nivel (Rampas)</strong> <span class="norm-reference">Art. 16</span><span class="task-detail">Cualquier desnivel debe contar con rampas con pendiente adecuada según Norma A.010.</span></label>
+            </div>
+        </div>
+
+        <div class="checklist-category">
+            <h4>🗑️ Categoría 5: Gestión de Residuos</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm16">
+                <label for="norm16"><strong>Área de Acopio de Residuos</strong> <span class="norm-reference">Art. 33</span><span class="task-detail">Se requiere <strong>0.010 m³ por m² de superficie de venta</strong> para el área de acopio. <br> <strong>Ejemplo:</strong> Para 500 m², se necesitan 5 m³ de capacidad de almacenamiento de residuos.</span></label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="norm17">
+                <label for="norm17"><strong>Cumplimiento de la Ley de Residuos</strong> <span class="norm-reference">Art. 33</span><span class="task-detail">El almacenamiento y recolección debe sujetarse a la Ley General de Residuos Sólidos (N° 27314).</span></label>
+            </div>
+        </div>
+
+        <!-- Resumen del checklist normativo -->
+        <div class="checklist-summary">
+            <span>📌 Total de requisitos normativos: <strong>17</strong></span>
+            <span>✅ Cumplidos: <span id="contadorNorm" class="count">0</span></span>
+            <span style="font-size:0.9rem; opacity:0.9;">(Marca las casillas para actualizar el contador)</span>
+        </div>
+    </div>
+
+    <!-- Script para ambos checklists -->
+    <script>
+        // Contador para el primer checklist (Implementación)
+        document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                var total = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]').length;
+                var checked = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]:checked').length;
+                document.getElementById('contador').textContent = checked + ' / ' + total;
+            });
+        });
+        // Inicializar contador del primer checklist
+        window.addEventListener('load', function() {
+            var total = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]').length;
+            var checked = document.querySelectorAll('.checklist-section:first-of-type .checklist-item input[type="checkbox"]:checked').length;
+            document.getElementById('contador').textContent = checked + ' / ' + total;
+        });
+
+        // Contador para el segundo checklist (Norma A.070)
+        document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                var total = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]').length;
+                var checked = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]:checked').length;
+                document.getElementById('contadorNorm').textContent = checked + ' / ' + total;
+            });
+        });
+        // Inicializar contador del segundo checklist
+        window.addEventListener('load', function() {
+            var total = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]').length;
+            var checked = document.querySelectorAll('.checklist-section:nth-of-type(2) .checklist-item input[type="checkbox"]:checked').length;
+            document.getElementById('contadorNorm').textContent = checked + ' / ' + total;
+        });
+    </script>
+
+    <!-- ==================== 8. CUADRO DE MANDO DE ESCENARIOS ==================== -->
+    <h2>8. Cuadro de mando de escenarios (resumen)</h2>
+    <table>
+        <thead><tr><th>Indicador</th><th>Esc. 1 (Colapso)</th><th>Esc. 2 (Subsistencia)</th><th>Esc. 3 (Crecimiento)</th><th>Esc. 4 (Integral)</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Licencia</strong></td><td>Sin licencia / Clausurado</td><td>Obtenida (con retraso)</td><td>Vigente</td><td>Vigente + ITSE</td></tr>
+            <tr><td><strong>Eventos / mes</strong></td><td>0</td><td>4‑5</td><td>6‑8</td><td>10+</td></tr>
+            <tr><td><strong>Satisfacción cliente</strong></td><td>N/A</td><td>3.5‑4.0</td><td>4.5</td><td>4.8+</td></tr>
+            <tr><td><strong>Membresías activas</strong></td><td>0</td><td>10‑20</td><td>50‑80</td><td>150+</td></tr>
+            <tr><td><strong>Quejas por ruido</strong></td><td>Muchas (cierre)</td><td>1‑2 al mes</td><td>0‑1 al mes</td><td>0 (aliado)</td></tr>
+            <tr><td><strong>Alianza con hospital</strong></td><td>No aplica</td><td>No aplica</td><td>Contacto informal</td><td><strong>Alianza formal</strong></td></tr>
+            <tr><td><strong>Rentabilidad</strong></td><td>Pérdida total</td><td>5‑10%</td><td>20‑30%</td><td>40%+</td></tr>
+            <tr><td><strong>Proyección</strong></td><td>Quiebra</td><td>Estancamiento</td><td>Expansión moderada</td><td>Escalabilidad y franquicia</td></tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== 9. MENSAJE CLAVE FINAL ==================== -->
+    <h2>9. Tu mensaje clave para el público</h2>
+    <div class="highlight-box" style="font-style:normal; font-size:1.1rem;">
+        <p><strong>No vendas un espacio. Vende <span style="color:#3d2c1b;">tranquilidad y seguridad</span>.</strong></p>
+        <ul style="margin-top:8px; list-style-type:'✓ ';">
+            <li><strong>Para Mamás:</strong> "Tus hijos juegan seguros mientras tú conversas tranquila."</li>
+            <li><strong>Para el Personal del Hospital:</strong> "Tu espacio de desconexión, a dos pasos de tu guardia."</li>
+            <li><strong>Para Empresas:</strong> "Eventos que transmiten calma y profesionalismo, sin molestias para el entorno."</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>Tu mejora más urgente no es la infraestructura (aunque es importante), es la COMUNICACIÓN. Debes dejar de ser percibido como un "terreno" y empezar a ser percibido como un "refugio".</strong></p>
+    </div>
+
+    <!-- ==================== 10. CONCLUSIÓN ==================== -->
+    <h2>10. Conclusión: la ruta a seguir</h2>
+    <p><strong>El panorama es claro:</strong> el proyecto tiene el potencial de alcanzar el <strong>Escenario 4</strong>, pero requiere un enfoque quirúrgico en las brechas críticas y una ejecución estratégica.</p>
+    <ul>
+        <li><strong>Prioridad Cero:</strong> No abrir hasta tener la licencia de funcionamiento y el tanque de agua.</li>
+        <li><strong>Estrategia diferenciadora:</strong> Usar la cercanía al hospital como un activo de marketing. Ir a presentar el proyecto al hospital antes de abrir.</li>
+        <li><strong>Ejecución disciplinada:</strong> Seguir el plan de implementación midiendo indicadores desde el primer evento.</li>
+        <li><strong>Visión de largo plazo:</strong> No conformarse con alquilar espacios. Construir una comunidad (membresías, eventos de bienestar, alianzas).</li>
+    </ul>
+    <p style="font-weight:500; margin-top:20px;">Si decides invertir en resolver las brechas críticas (estimado S/ 50,000 – S/ 80,000) y ejecutar el plan estratégico, el <strong>Valor Potencial del Negocio</strong> (Escenario 4) puede superar ampliamente el millón de soles en valoración de marca y flujo de caja.</p>
+    <p style="font-size:1.05rem; color:#3d2c1b;"><strong>El mapa está en tus manos. ¿Qué escenario eliges construir?</strong></p>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div class="footer-note">
+        <p>El Refugio de Rob – Finca &amp; Eventos · Cosío de Pomar · Agosto 2026</p>
+        <p style="font-size:0.85rem; color:#8a7a6a;">Documento estratégico basado en el análisis de contexto, modelo de negocio y escenarios de desarrollo.</p>
+    </div>
+
+</div>
+</body>
+</html>
